@@ -2,201 +2,402 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-  <title>Yuan · Know Your Code</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover, maximum-scale=1.0">
+  <title>Yuan · Know Your Code. Run Your Life.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { margin:0; padding:0; box-sizing:border-box; }
     body {
-      background: #0a0c0f;
-      font-family: 'Inter', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 1.5rem;
-      background-image: radial-gradient(circle at 30% 40%, rgba(180, 140, 70, 0.08) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 70%, rgba(160, 120, 50, 0.05) 0%, transparent 50%);
+      background:#0a0c0f; font-family:'Inter',sans-serif; display:flex; justify-content:center; align-items:center;
+      min-height:100vh; padding:1.5rem;
+      background-image:radial-gradient(circle at 30% 40%, rgba(180,140,70,0.08) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(160,120,50,0.05) 0%, transparent 50%);
     }
-    .portal {
-      width: 100%;
-      max-width: 480px;
-      background: rgba(12, 14, 18, 0.75);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border: 1px solid rgba(200, 160, 80, 0.25);
-      border-radius: 2.5rem;
-      padding: 2.5rem 2rem;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.7), inset 0 1px 0 rgba(220, 180, 100, 0.2);
-      position: relative;
+    #app {
+      width:100%; max-width:520px; background:rgba(12,14,18,0.8); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);
+      border:1px solid rgba(200,160,80,0.25); border-radius:2.5rem; padding:1.8rem; box-shadow:0 20px 50px rgba(0,0,0,0.7);
+      position:relative; min-height:650px; display:flex; flex-direction:column;
     }
-    .logotype {
-      font-size: 2.8rem;
-      font-weight: 300;
-      letter-spacing: 0.15em;
-      color: #d4b56c;
-      text-shadow: 0 0 20px rgba(180, 140, 60, 0.5);
-      text-transform: uppercase;
+    .zen-ring { position:absolute; top:-1px; left:-1px; right:-1px; bottom:-1px; border-radius:2.5rem; pointer-events:none;
+      background:radial-gradient(circle at 20% 20%, rgba(200,160,80,0.12) 0%, transparent 70%);
+      mask:linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
     }
-    .tagline {
-      font-size: 0.8rem;
-      font-weight: 400;
-      letter-spacing: 0.2em;
-      color: rgba(180, 150, 100, 0.7);
-      margin-top: 0.2rem;
-      text-transform: uppercase;
-    }
-    .divider {
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(200, 160, 80, 0.5), rgba(200, 160, 80, 0.2), transparent);
-      margin: 0.5rem 0 1rem;
-    }
-    .form { display: flex; flex-direction: column; gap: 1.5rem; }
-    .input-group { display: flex; flex-direction: column; gap: 0.4rem; }
-    label {
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      color: rgba(200, 165, 90, 0.8);
-      text-transform: uppercase;
-    }
-    input, select {
-      background: rgba(20, 22, 26, 0.7);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(180, 140, 70, 0.3);
-      border-radius: 1.2rem;
-      padding: 0.9rem 1.2rem;
-      font-size: 1rem;
-      color: #e0d3b8;
-      outline: none;
-      font-family: inherit;
-    }
-    input:focus, select:focus {
-      border-color: #d4a745;
-      box-shadow: 0 0 18px rgba(200, 150, 50, 0.25);
-    }
-    .birth-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.8rem; }
-    .cta-button {
-      background: rgba(30, 32, 38, 0.8);
-      backdrop-filter: blur(12px);
-      border: 1px solid #c9a44b;
-      color: #ebd7a8;
-      font-weight: 500;
-      font-size: 1rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      padding: 1rem;
-      border-radius: 3rem;
-      cursor: pointer;
-      margin-top: 0.5rem;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-    }
-    .cta-button:hover {
-      background: #2a2d35;
-      border-color: #e5ba56;
-      color: #f5e7c6;
-      box-shadow: 0 0 28px rgba(200, 150, 40, 0.5);
-    }
-    .footer-haiku { margin-top: 1.5rem; text-align: center; }
-    .haiku-line {
-      font-size: 0.7rem;
-      font-weight: 300;
-      letter-spacing: 0.25em;
-      color: rgba(180, 150, 100, 0.55);
-      text-transform: uppercase;
-      line-height: 1.7;
-    }
-    /* 本命总纲弹窗 */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.85);
-      backdrop-filter: blur(8px);
-      z-index: 100;
-      justify-content: center;
-      align-items: center;
-      padding: 1.5rem;
-    }
-    .modal-card {
-      background: rgba(15, 17, 22, 0.95);
-      border: 1px solid rgba(200, 160, 80, 0.4);
-      border-radius: 2rem;
-      padding: 2.5rem 2rem;
-      max-width: 500px;
-      text-align: center;
-    }
-    .modal-card h2 {
-      color: #d4b56c;
-      font-weight: 300;
-      font-size: 1.8rem;
-      margin-bottom: 1.5rem;
-    }
-    .modal-card p {
-      color: #c0b28a;
-      line-height: 1.8;
-      font-weight: 300;
-      margin-bottom: 2rem;
-    }
-    .close-btn {
-      background: transparent;
-      border: 1px solid rgba(200, 160, 80, 0.5);
-      color: #d4b56c;
-      padding: 0.8rem 2rem;
-      border-radius: 3rem;
-      cursor: pointer;
-      font-family: inherit;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
+    .header { text-align:center; margin-bottom:1.2rem; z-index:1; }
+    .logotype { font-size:2.4rem; font-weight:300; letter-spacing:0.15em; color:#d4b56c; text-shadow:0 0 20px rgba(180,140,60,0.5); }
+    .tagline { font-size:0.65rem; letter-spacing:0.2em; color:rgba(180,150,100,0.6); text-transform:uppercase; }
+    .divider { width:60%; height:1px; background:linear-gradient(90deg, transparent, rgba(200,160,80,0.6), transparent); margin:0.6rem auto; }
+
+    .card { background:rgba(20,22,26,0.7); border:1px solid rgba(200,160,80,0.2); border-radius:1.2rem; padding:1rem; margin-bottom:1rem; }
+    .card-title { font-size:0.7rem; font-weight:500; letter-spacing:0.1em; color:rgba(200,165,90,0.9); text-transform:uppercase; margin-bottom:0.6rem; border-bottom:1px solid rgba(200,160,80,0.2); padding-bottom:0.4rem; }
+
+    .btn { background:rgba(30,32,38,0.9); border:1px solid #c9a44b; color:#ebd7a8; font-weight:500; font-size:0.85rem; padding:0.7rem 1.2rem; border-radius:3rem; cursor:pointer; transition:0.3s; text-transform:uppercase; letter-spacing:0.08em; }
+    .btn:hover { background:#2a2d35; border-color:#e5ba56; color:#f5e7c6; box-shadow:0 0 20px rgba(200,150,40,0.5); }
+    .btn-sm { padding:0.4rem 1rem; font-size:0.7rem; }
+
+    input, select { background:rgba(20,22,26,0.8); border:1px solid rgba(180,140,70,0.3); border-radius:1.2rem; padding:0.8rem 1rem; font-size:0.9rem; color:#e0d3b8; outline:none; font-family:inherit; width:100%; }
+    input:focus { border-color:#d4a745; box-shadow:0 0 18px rgba(200,150,50,0.25); }
+
+    .nav { display:flex; justify-content:space-around; margin-top:auto; border-top:1px solid rgba(200,160,80,0.2); padding-top:0.6rem; }
+    .nav-item { text-align:center; color:rgba(180,150,100,0.6); font-size:0.6rem; cursor:pointer; transition:0.2s; letter-spacing:0.05em; }
+    .nav-item.active { color:#d4b56c; }
+    .nav-item .icon { font-size:1.2rem; display:block; margin-bottom:0.1rem; }
+
+    .pro-badge { background:linear-gradient(135deg, #b58b2c, #d4af37); color:#0a0c0f; font-weight:600; font-size:0.6rem; padding:0.2rem 0.6rem; border-radius:1rem; display:inline-block; }
+    .chat-messages { max-height:280px; overflow-y:auto; margin-bottom:0.8rem; display:flex; flex-direction:column; gap:0.4rem; }
+    .msg { padding:0.5rem 0.8rem; border-radius:1rem; font-size:0.8rem; line-height:1.4; max-width:85%; }
+    .msg.user { background:rgba(200,160,80,0.15); color:#ebd7a8; align-self:flex-end; }
+    .msg.oracle { background:rgba(20,22,26,0.9); color:#c0b28a; align-self:flex-start; }
+    .hidden { display:none !important; }
+    .flex-col { display:flex; flex-direction:column; gap:0.8rem; }
   </style>
 </head>
 <body>
-  <div class="portal">
-    <div class="logotype">源</div>
-    <div class="tagline">know your code · run your life</div>
-    <div class="divider"></div>
-    <form class="form" onsubmit="event.preventDefault(); showModal();">
-      <div class="input-group">
-        <label>Birth Date · 诞辰</label>
-        <input type="date" id="birthDate" value="1990-01-01" required>
-      </div>
-      <div class="input-group">
-        <label>Exact Time · 时痕</label>
-        <input type="time" id="birthTime" value="12:00" required>
-      </div>
-      <div class="input-group">
-        <label>Place of Birth · 地脉</label>
-        <input type="text" id="birthPlace" placeholder="City, Country · e.g. Berlin, Germany" required>
-      </div>
-      <button class="cta-button" type="submit">Decode · 解码</button>
-    </form>
-    <div class="footer-haiku">
-      <div class="haiku-line">from void, the signal rises</div>
-      <div class="haiku-line">stars aligned in code</div>
-      <div class="haiku-line">your origin speaks</div>
+<div id="app">
+  <div class="zen-ring"></div>
+
+  <!-- 初始输入面板 -->
+  <div id="inputScreen" class="flex-col" style="z-index:1;">
+    <div class="header">
+      <div class="logotype">源</div>
+      <div class="tagline">know your code · run your life</div>
+      <div class="divider"></div>
+    </div>
+    <div class="flex-col">
+      <label style="color:#c9a44b; font-size:0.7rem;">Birth Date · 诞辰</label>
+      <input type="date" id="birthDate" value="1990-01-01">
+      <label style="color:#c9a44b; font-size:0.7rem;">Exact Time · 时痕</label>
+      <input type="time" id="birthTime" value="12:00">
+      <label style="color:#c9a44b; font-size:0.7rem;">Place of Birth · 地脉</label>
+      <input type="text" id="birthPlace" placeholder="City, Country" value="Beijing, China">
+      <button class="btn" id="decodeBtn" style="align-self:center;">Decode · 解码</button>
     </div>
   </div>
 
-  <!-- 本命总纲弹窗 -->
-  <div class="modal-overlay" id="modal">
-    <div class="modal-card">
-      <h2>Your Cosmic Code</h2>
-      <p id="modalText">You are a Visionary Architect, here to design new realities from the blueprint of your soul...</p>
-      <button class="close-btn" onclick="closeModal()">Continue · 继续</button>
+  <!-- 结果面板 -->
+  <div id="resultScreen" class="hidden flex-col" style="z-index:1; flex:1;">
+    <div id="tabOverview" class="tab-content flex-col"></div>
+    <div id="tabLifeRiver" class="tab-content hidden flex-col"></div>
+    <div id="tabFuture" class="tab-content hidden flex-col"></div>
+    <div id="tabOracle" class="tab-content hidden flex-col"></div>
+    <div id="tabSettings" class="tab-content hidden flex-col"></div>
+
+    <div class="nav">
+      <div class="nav-item active" data-tab="overview"><span class="icon">🧬</span>Overview</div>
+      <div class="nav-item" data-tab="liferiver"><span class="icon">🌊</span>Life River</div>
+      <div class="nav-item" data-tab="future"><span class="icon">🔮</span>Future</div>
+      <div class="nav-item" data-tab="oracle"><span class="icon">🧿</span>Oracle</div>
+      <div class="nav-item" data-tab="settings"><span class="icon">⚙️</span>Settings</div>
     </div>
   </div>
+</div>
 
-  <script>
-    function showModal() {
-      document.getElementById('modal').style.display = 'flex';
+<script>
+  // ========== 八字引擎 ==========
+  const heavenlyStems = ["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"];
+  const earthlyBranches = ["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"];
+  const elementMap = {
+    '甲':'木','乙':'木','丙':'火','丁':'火','戊':'土','己':'土','庚':'金','辛':'金','壬':'水','癸':'水',
+    '寅':'木','卯':'木','巳':'火','午':'火','辰':'土','戌':'土','丑':'土','未':'土','申':'金','酉':'金','亥':'水','子':'水'
+  };
+
+  function getTenGod(dayGan, otherGan) {
+    const dayIdx = heavenlyStems.indexOf(dayGan);
+    const otherIdx = heavenlyStems.indexOf(otherGan);
+    const diff = (otherIdx - dayIdx + 10) % 10;
+    const same = dayIdx % 2 === otherIdx % 2 ? 'same' : 'diff';
+    const map = {
+      '0same':'比肩','0diff':'劫财','1same':'正印','1diff':'偏印','2same':'偏印','2diff':'正印',
+      '3same':'正官','3diff':'七杀','4same':'七杀','4diff':'正官','5same':'正财','5diff':'偏财',
+      '6same':'偏财','6diff':'正财','7same':'食神','7diff':'伤官','8same':'伤官','8diff':'食神',
+      '9same':'比肩','9diff':'劫财'
+    };
+    return map[diff+same] || '未知';
+  }
+
+  function yearGanZhi(y) {
+    const g = heavenlyStems[(y - 4) % 10];
+    const z = earthlyBranches[(y - 4) % 12];
+    return g+z;
+  }
+
+  function dayGanZhi(date) {
+    const base = new Date(1900,0,1);
+    const diff = Math.floor((date.getTime() - base.getTime())/86400000);
+    return {gan: heavenlyStems[(diff+9)%10], zhi: earthlyBranches[(diff+5)%12]};
+  }
+
+  function monthGanZhi(yearGanIdx, monthIdx) {
+    const base = [2,4,6,8,0];
+    const g = heavenlyStems[(base[yearGanIdx%5] + monthIdx -1)%10];
+    const z = earthlyBranches[(monthIdx+1)%12];
+    return g+z;
+  }
+
+  function hourGanZhi(dayGanIdx, hour) {
+    const zIdx = Math.floor((hour+1)/2)%12;
+    const base = [0,2,4,6,8];
+    const g = heavenlyStems[(base[dayGanIdx%5] + zIdx)%10];
+    const z = earthlyBranches[zIdx];
+    return g+z;
+  }
+
+  function buildChart(dateStr, timeStr, placeStr) {
+    const [y,m,d] = dateStr.split('-').map(Number);
+    const [hh,mm] = timeStr.split(':').map(Number);
+    const tz = 8;
+    const local = new Date(y, m-1, d, hh, mm);
+    const utc = new Date(local.getTime() - tz*3600000);
+    const adj = new Date(utc.getTime() + 8*3600000);
+    const yearG = yearGanZhi(adj.getFullYear())[0];
+    const yearZ = yearGanZhi(adj.getFullYear())[1];
+    const yearGIdx = heavenlyStems.indexOf(yearG);
+    const monthIdx = adj.getMonth()+1;
+    const monthGZ = monthGanZhi(yearGIdx, monthIdx);
+    const dayGZ = dayGanZhi(adj);
+    const hour = adj.getHours();
+    const hourGZ = hourGanZhi(heavenlyStems.indexOf(dayGZ.gan), hour);
+    const pillars = {
+      year: {gan:yearG, zhi:yearZ},
+      month: {gan:monthGZ[0], zhi:monthGZ[1]},
+      day: {gan:dayGZ.gan, zhi:dayGZ.zhi},
+      hour: {gan:hourGZ[0], zhi:hourGZ[1]}
+    };
+    const tenGods = {
+      year: getTenGod(pillars.day.gan, pillars.year.gan),
+      month: getTenGod(pillars.day.gan, pillars.month.gan),
+      day: '日主',
+      hour: getTenGod(pillars.day.gan, pillars.hour.gan)
+    };
+    const elements = {木:0,火:0,土:0,金:0,水:0};
+    ['year','month','day','hour'].forEach(k => {
+      elements[elementMap[pillars[k].gan]]++;
+      elements[elementMap[pillars[k].zhi]]++;
+    });
+    const isYang = heavenlyStems.indexOf(yearG)%2===0;
+    const forward = isYang;
+    let daYun = [];
+    let currentIdx = heavenlyStems.indexOf(monthGZ[0])*12 + earthlyBranches.indexOf(monthGZ[1]);
+    for(let i=0; i<8; i++) {
+      currentIdx = forward ? (currentIdx+1)%60 : (currentIdx-1+60)%60;
+      daYun.push({ganZhi: heavenlyStems[currentIdx%10]+earthlyBranches[currentIdx%12], startAge: 3 + i*10});
     }
-    function closeModal() {
-      document.getElementById('modal').style.display = 'none';
+    return {pillars, tenGods, elements, daYun, yearGan:yearG};
+  }
+
+  // ========== UI 状态 ==========
+  let currentChart = null;
+  let currentTab = 'overview';
+
+  const inputScreen = document.getElementById('inputScreen');
+  const resultScreen = document.getElementById('resultScreen');
+  const tabs = document.querySelectorAll('.nav-item');
+  const tabContents = {
+    overview: document.getElementById('tabOverview'),
+    liferiver: document.getElementById('tabLifeRiver'),
+    future: document.getElementById('tabFuture'),
+    oracle: document.getElementById('tabOracle'),
+    settings: document.getElementById('tabSettings')
+  };
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const tabName = tab.dataset.tab;
+      switchTab(tabName);
+    });
+  });
+
+  function switchTab(name) {
+    currentTab = name;
+    tabs.forEach(t => t.classList.remove('active'));
+    document.querySelector(`.nav-item[data-tab="${name}"]`).classList.add('active');
+    Object.values(tabContents).forEach(c => c.classList.add('hidden'));
+    tabContents[name].classList.remove('hidden');
+    if (name === 'oracle') initOracleTab();
+    if (name === 'settings') renderSettings();
+  }
+
+  document.getElementById('decodeBtn').addEventListener('click', () => {
+    const date = document.getElementById('birthDate').value;
+    const time = document.getElementById('birthTime').value;
+    const place = document.getElementById('birthPlace').value;
+    currentChart = buildChart(date, time, place);
+    renderAllTabs();
+    inputScreen.classList.add('hidden');
+    resultScreen.classList.remove('hidden');
+    switchTab('overview');
+  });
+
+  function renderAllTabs() {
+    if (!currentChart) return;
+    const {pillars, tenGods, elements, daYun} = currentChart;
+    let overviewHTML = `
+      <div class="card">
+        <div class="card-title">Destiny Code · 本命总纲</div>
+        <p style="color:#c0b28a; line-height:1.8;">You are a <strong style="color:#d4b56c;">${elementMap[pillars.day.gan]}</strong> soul. 
+        Your core drive is <strong style="color:#d4b56c;">${tenGods.day}</strong>. This is your operating system.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Four Pillars · 四柱</div>
+        <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:0.4rem; text-align:center;">
+          ${['year','month','day','hour'].map(k => `
+            <div style="background:rgba(0,0,0,0.3); border-radius:0.8rem; padding:0.6rem;">
+              <div style="font-size:0.6rem; color:#c9a44b;">${k.toUpperCase()}</div>
+              <div style="font-size:1.2rem; color:#ebd7a8;">${pillars[k].gan}${pillars[k].zhi}</div>
+              <div style="font-size:0.65rem; color:rgba(180,150,100,0.8);">${tenGods[k]}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+    tabContents.overview.innerHTML = overviewHTML;
+
+    const events = generateLifeRiver(currentChart);
+    let riverHTML = `<div class="card"><div class="card-title">Life River · 命运长河</div>`;
+    if (events.length) {
+      riverHTML += events.map(e => `<div style="display:flex; justify-content:space-between; padding:0.5rem 0; border-bottom:1px solid rgba(200,160,80,0.1);"><span style="color:#d4b56c;">${e.year} (~${e.age})</span><span style="color:#c0b28a;">${e.ganZhi} · ${e.desc}</span></div>`).join('');
+    } else {
+      riverHTML += `<p style="color:#c0b28a;">Enter your birth details to see past echoes.</p>`;
     }
-  </script>
+    riverHTML += `</div>`;
+    tabContents.liferiver.innerHTML = riverHTML;
+
+    const future = generateFuturePath(currentChart);
+    let futureHTML = `<div class="card"><div class="card-title">Future Path · 未来之径</div>`;
+    future.forEach(f => {
+      futureHTML += `<div style="padding:0.5rem 0; border-bottom:1px solid rgba(200,160,80,0.1);"><span style="color:#d4b56c;">${f.startYear}-${f.startYear+9}</span> <span style="color:#c0b28a;">${f.ganZhi} · ${interpretLuck(f.ganZhi, currentChart.pillars.day.gan)}</span></div>`;
+    });
+    futureHTML += `</div>`;
+    tabContents.future.innerHTML = futureHTML;
+  }
+
+  function generateLifeRiver(chart) {
+    const currentYear = new Date().getFullYear();
+    const birthYear = parseInt(document.getElementById('birthDate').value.split('-')[0]);
+    const daYun = chart.daYun;
+    const events = [];
+    daYun.forEach(dy => {
+      const ageStart = dy.startAge;
+      const yearStart = birthYear + ageStart;
+      if (yearStart + 9 < currentYear) {
+        events.push({age: ageStart+4, year: yearStart+4, ganZhi: dy.ganZhi, desc: interpretLuck(dy.ganZhi, chart.pillars.day.gan)});
+      } else if (yearStart < currentYear) {
+        events.push({age: ageStart+2, year: yearStart+2, ganZhi: dy.ganZhi, desc: interpretLuck(dy.ganZhi, chart.pillars.day.gan)});
+      }
+    });
+    return events.slice(-4);
+  }
+
+  function generateFuturePath(chart) {
+    const currentYear = new Date().getFullYear();
+    const birthYear = parseInt(document.getElementById('birthDate').value.split('-')[0]);
+    return chart.daYun.filter(dy => birthYear + dy.startAge >= currentYear - 5).slice(0,3).map(dy => ({
+      ...dy,
+      startYear: birthYear + dy.startAge
+    }));
+  }
+
+  function interpretLuck(ganZhi, dayGan) {
+    const gan = ganZhi[0];
+    const god = getTenGod(dayGan, gan);
+    const dict = {
+      '正官':'Authority & structure','七杀':'Challenge & power','正财':'Steady wealth','偏财':'Unexpected fortune',
+      '正印':'Wisdom & support','偏印':'Unconventional insight','食神':'Creativity & joy','伤官':'Rebellion & genius',
+      '比肩':'Self-reliance','劫财':'Partnerships & competition'
+    };
+    return dict[god] || 'Transformation';
+  }
+
+  // ========== Oracle with DeepSeek ==========
+  function initOracleTab() {
+    if (tabContents.oracle.children.length > 0) return;
+    tabContents.oracle.innerHTML = `
+      <div class="card flex-col" style="flex:1;">
+        <div class="card-title">Oracle · 命理先知 <span class="pro-badge">PRO</span></div>
+        <div id="chatMessages" class="chat-messages"></div>
+        <div style="display:flex; gap:0.5rem;">
+          <input type="text" id="oracleInput" placeholder="Ask about your destiny..." style="flex:1;">
+          <button class="btn btn-sm" id="sendOracleBtn">Send</button>
+        </div>
+        <p id="oracleStatus" style="color:rgba(180,150,100,0.6); font-size:0.7rem; margin-top:0.3rem;">Powered by DeepSeek · Set API Key in Settings</p>
+      </div>
+    `;
+    document.getElementById('sendOracleBtn').addEventListener('click', sendOracleMessage);
+    document.getElementById('oracleInput').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') sendOracleMessage();
+    });
+  }
+
+  async function sendOracleMessage() {
+    const input = document.getElementById('oracleInput');
+    const msg = input.value.trim();
+    if (!msg) return;
+    const apiKey = localStorage.getItem('yuan_deepseek_key');
+    if (!apiKey) {
+      alert('DeepSeek API Key not set. Please go to Settings and enter your key.');
+      return;
+    }
+    addChatMessage('user', msg);
+    input.value = '';
+    document.getElementById('oracleStatus').innerText = 'Consulting the stars...';
+    const systemPrompt = `You are a master of Chinese BaZi (Four Pillars of Destiny) astrology. The user's chart: 
+    Year: ${currentChart.pillars.year.gan}${currentChart.pillars.year.zhi}, 
+    Month: ${currentChart.pillars.month.gan}${currentChart.pillars.month.zhi}, 
+    Day: ${currentChart.pillars.day.gan}${currentChart.pillars.day.zhi}, 
+    Hour: ${currentChart.pillars.hour.gan}${currentChart.pillars.hour.zhi}.
+    Ten Gods: Year - ${currentChart.tenGods.year}, Month - ${currentChart.tenGods.month}, Day - ${currentChart.tenGods.day}, Hour - ${currentChart.tenGods.hour}.
+    Answer in English with poetic depth and practical guidance. Be concise but insightful.`;
+    try {
+      const res = await fetch('https://api.deepseek.com/v1/chat/completions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${apiKey}` },
+        body: JSON.stringify({
+          model: 'deepseek-chat',
+          messages: [{role:'system', content:systemPrompt}, {role:'user', content:msg}],
+          temperature: 0.9,
+          max_tokens: 500
+        })
+      });
+      const data = await res.json();
+      const reply = data.choices?.[0]?.message?.content || 'The cosmic signal is unclear...';
+      addChatMessage('oracle', reply);
+      document.getElementById('oracleStatus').innerText = 'Powered by DeepSeek';
+    } catch(e) {
+      addChatMessage('oracle', 'Connection failed. Check your key or network.');
+      document.getElementById('oracleStatus').innerText = '';
+    }
+  }
+
+  function addChatMessage(role, text) {
+    const container = document.getElementById('chatMessages');
+    const div = document.createElement('div');
+    div.className = `msg ${role}`;
+    div.innerText = text;
+    container.appendChild(div);
+    container.scrollTop = container.scrollHeight;
+  }
+
+  // ========== Settings ==========
+  function renderSettings() {
+    tabContents.settings.innerHTML = `
+      <div class="card flex-col">
+        <div class="card-title">Settings · 设置</div>
+        <label style="color:#c9a44b; font-size:0.7rem;">DeepSeek API Key</label>
+        <input type="password" id="apiKeyInput" placeholder="sk-..." value="${localStorage.getItem('yuan_deepseek_key')||''}">
+        <button class="btn btn-sm" id="saveKeyBtn">Save Key</button>
+        <p style="color:rgba(180,150,100,0.5); font-size:0.6rem; margin-top:0.5rem;">Your key is stored locally and never uploaded.</p>
+        <p style="color:rgba(180,150,100,0.4); font-size:0.55rem;">Get your key at <a href="https://platform.deepseek.com" target="_blank" style="color:#d4b56c;">platform.deepseek.com</a></p>
+      </div>
+    `;
+    document.getElementById('saveKeyBtn').addEventListener('click', () => {
+      const key = document.getElementById('apiKeyInput').value.trim();
+      localStorage.setItem('yuan_deepseek_key', key);
+      alert('DeepSeek API Key saved!');
+    });
+  }
+
+  resultScreen.classList.add('hidden');
+</script>
 </body>
 </html>
